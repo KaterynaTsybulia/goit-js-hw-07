@@ -26,16 +26,16 @@ function createBoxes() {
   boxesContainer.innerHTML = '';
 
   let size = 30;
-  let boxesHTML = '';
- 
-  for (let i = 0; i < amount; i++) {
+
+  const boxesHTML = Array.from({ length: amount }).map((_, index) => {
     const backgroundColor = getRandomHexColor();
-    boxesHTML += `<div style="width: ${size}px; height: ${size}px; background-color: ${backgroundColor};"></div>`;
+    const style = `width: ${size}px; height: ${size}px; background-color: ${backgroundColor};`;
     size += 10;
-  }
+    return `<div style="${style}"></div>`;
+  }).join('');
 
-  boxesContainer.innerHTML = boxesHTML;
-
+  boxesContainer.insertAdjacentHTML('beforeend', boxesHTML);
+  
   input.value = '';
 }
 
