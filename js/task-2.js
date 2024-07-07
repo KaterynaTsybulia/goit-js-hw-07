@@ -28,19 +28,13 @@ const images = [
 ];
 
 
-function createGallery(images) {
-  const gallery = document.querySelector('.gallery');
-  let galleryHTML = '';
+const list = document.querySelector('.gallery');
 
-  images.forEach((image, index) => {
-    galleryHTML +=
+const markup = images
+  .map((image) =>
     `<li>
       <img src="${image.url}" alt="${image.alt}" class="gallery-image">
-    </li> `;
-  });
+    </li> `)
+  .join('');
 
-  gallery.insertAdjacentHTML('beforeend', galleryHTML);
-}
-
-createGallery(images);
-
+list.insertAdjacentHTML('afterbegin', markup);
