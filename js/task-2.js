@@ -30,29 +30,17 @@ const images = [
 
 function createGallery(images) {
   const gallery = document.querySelector('.gallery');
-
-  const galleryContainer = document.createElement('div');
-  galleryContainer.classList.add('gallery-container');
+  let galleryHTML = '';
 
   images.forEach((image, index) => {
-    const img = document.createElement('img');
-    img.src = image.url;
-    img.alt = image.alt;
-    img.classList.add('gallery-image');
-
-    galleryContainer.appendChild(img);
-
-    if ((index + 1) % 3 === 0 && index < images.length - 1) {
-      const lineBreak = document.createElement('br');
-      galleryContainer.appendChild(lineBreak);
-    }
+    galleryHTML +=
+    `<li>
+      <img src="${image.url}" alt="${image.alt}" class="gallery-image">
+    </li> `;
   });
 
-  gallery.appendChild(galleryContainer);
+  gallery.insertAdjacentHTML('beforeend', galleryHTML);
 }
 
 createGallery(images);
-
-
-
 

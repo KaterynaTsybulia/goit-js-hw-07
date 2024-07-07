@@ -25,11 +25,12 @@ body {
 
 /* ///----2-----// */
 
-.gallery-container {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
+  list-style-type: none;
 }
 
 .gallery-image {
@@ -146,10 +147,4 @@ button[data-destroy] {
   padding: 32px;
   height: 134px;
   gap: 44px;
-}
-
-#boxes div {
-  width: 30px;
-  height: 30px;
-  margin-bottom: 0;
 }
