@@ -12,33 +12,30 @@ const destroyButton = document.querySelector('[data-destroy]');
 const input = document.querySelector('input');
 const boxesContainer = document.querySelector('#boxes');
 
-createButton.addEventListener('click', createBoxes);
+createButton.addEventListener('click', boxesCreate);
 destroyButton.addEventListener('click', destroyBoxes);
 
-function createBoxes() {
-  const amount = Math.round(input.value);
-  
-  if (isNaN(amount) || amount < 1 || amount > 100) {
-    alert('The number must be between 1 and 100');
+function boxesCreate() {
+  const value = Number(input.value);
+  if (value < 1 || value > 100) {
     return;
   }
-  
-  boxesContainer.innerHTML = '';
 
-  let size = 30;
-
-  const boxesHTML = Array.from({ length: amount }).map((_, index) => {
-    const backgroundColor = getRandomHexColor();
-    const style = `width: ${size}px; height: ${size}px; background-color: ${backgroundColor};`;
-    size += 10;
-    return `<div style="${style}"></div>`;
-  }).join('');
-
-  boxesContainer.insertAdjacentHTML('beforeend', boxesHTML);
-  
+  boxesContainer.innerHTML = createBoxes(value);
   input.value = '';
 }
 
 function destroyBoxes() {
   boxesContainer.innerHTML = '';
+}
+
+function createBoxes(amount) {
+  let markup = "";
+  let size = 30;
+  for (let i = 0; i < amount; i += 1) {
+    size += 10;
+    markup += `<div style="background-color:${getRandomHexColor()}; width: ${size}px; heigth:${size}px;"></div>`;
+  }
+
+  return markup
 }
